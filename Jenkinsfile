@@ -43,6 +43,15 @@ pipeline {
                     '''
                 }
             }
+
+stage('Deploy to Kubernetes') {
+    steps {
+        sh '''
+        sudo -u ubuntu kubectl rollout restart deployment employee-management
+        sudo -u ubuntu kubectl rollout status deployment employee-management
+        '''
+    }
+}
         }
     }
 }
